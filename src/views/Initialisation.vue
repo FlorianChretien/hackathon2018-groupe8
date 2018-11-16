@@ -1,46 +1,78 @@
 <template>
   <div>
-    <h1>Scannez le code au dos de la peluche</h1>
-    <img :class="{ imgValide: isValide }" src="https://img.icons8.com/color/300/000000/checkmark.png">
-    <qrcode-stream :class="{ qrValide: isValide }" @decode="onDecode"></qrcode-stream>
+    <etape1 v-if="displayEtape1" @etape-valide="toggleDisplayEtape1" />
+    <etape2 v-if="displayEtape2" @etape-valide="toggleDisplayEtape2" />
+    <etape3 v-if="displayEtape3" @etape-valide="toggleDisplayEtape3" />
+    <div class="container">
+      <div :class="[displayEtape1 ? 'circle' : 'circleVide']"></div>
+      <div :class="[displayEtape2 ? 'circle' : 'circleVide']"></div>
+      <div :class="[displayEtape3 ? 'circle' : 'circleVide']"></div>
+    </div>
   </div>
 </template>
 
 <script>
-import Vue from 'vue'
-import VueQrcodeReader from 'vue-qrcode-reader'
-
-Vue.use(VueQrcodeReader)
+import Etape1 from '../components/initialisation/Etape1'
+import Etape2 from '../components/initialisation/Etape2'
+import Etape3 from '../components/initialisation/Etape3'
+import router from '../router'
 
 export default {
   name: 'initialisation',
-  data: function() {
+  components: { Etape1, Etape2, Etape3 },
+  data: function () {
     return {
-      isValide: false
+      displayEtape1: true,
+      displayEtape2: false,
+      displayEtape3: false
     }
   },
   methods: {
-    onDecode (decodedString) {
-      console.log(decodedString)
-      this.isValide = true
+    toggleDisplayEtape1 () {
+      this.displayEtape1 = false
+      this.displayEtape2 = true
+    },
+    toggleDisplayEtape2 () {
+      this.displayEtape2 = false
+      this.displayEtape3 = true
+    },
+    toggleDisplayEtape3 () {
+      return router.push('ours')
     }
   }
 }
 </script>
 
 <style scoped>
-  .qrValide{
-    position: relative;
-    filter: blur(3px);
+  div{
+    height: 600px;
   }
-  img{
+  .displayEtape{
+    display: inherit;
+  }
+  .notDisplayEtape{
     display: none;
   }
-  .imgValide{
-    display: block!important;
-    position: absolute;
-    top: 16%;
-    left: 30%;
-    z-index: 9;
+  .container{
+    margin: 0 auto;
+    margin-top: 40px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100px;
+  }
+  .circle {
+    border-radius: 50%;
+    width: 15px;
+    height: 15px;
+    border: 1px solid black;
+    background-color: black;
+  }
+  .circleVide {
+    border-radius: 50%;
+    width: 15px;
+    height: 15px;
+    border: 1px solid black;
+    background-color: white;
   }
 </style>

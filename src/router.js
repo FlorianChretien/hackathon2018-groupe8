@@ -2,6 +2,7 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import Home from './views/Home.vue'
 import Initialisation from './views/Initialisation.vue'
+import Ours from './views/Ours.vue'
 
 Vue.use(Router)
 
@@ -20,9 +21,9 @@ export default new Router({
       component: Initialisation
     },
     {
-      path: '/about',
-      name: 'about',
-      /*component: () => import(/!* webpackChunkName: "about" *!/ './views/About.vue')*/
+      path: '/ours',
+      name: 'Ours',
+      component: Ours
     }
   ]
 })
