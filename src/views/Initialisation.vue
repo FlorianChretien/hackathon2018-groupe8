@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="global-container">
     <etape1 v-if="displayEtape1" @etape-valide="toggleDisplayEtape1" />
     <etape2 v-if="displayEtape2" @etape-valide="toggleDisplayEtape2" />
     <etape3 v-if="displayEtape3" @etape-valide="toggleDisplayEtape3" />
@@ -44,8 +44,10 @@ export default {
 </script>
 
 <style scoped>
-  div{
-    height: 600px;
+  .global-container{
+    width: 100%;
+    height: 100vh;
+    background-image: linear-gradient(to bottom right, #47BBF4, #3099BC);
   }
   .displayEtape{
     display: inherit;
@@ -55,7 +57,7 @@ export default {
   }
   .container{
     margin: 0 auto;
-    margin-top: 40px;
+    margin-top: 8vh;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -63,16 +65,15 @@ export default {
   }
   .circle {
     border-radius: 50%;
-    width: 15px;
-    height: 15px;
-    border: 1px solid black;
-    background-color: black;
+    width: 10px;
+    height: 10px;
+    background-color: white;
   }
   .circleVide {
     border-radius: 50%;
-    width: 15px;
-    height: 15px;
-    border: 1px solid black;
-    background-color: white;
+    width: 10px;
+    height: 10px;
+    opacity: 0.5;
+    background-color: #ffffff;
   }
 </style>

@@ -1,8 +1,7 @@
 <template>
   <div>
-    <h1>Branchez le support de la peluche</h1>
-    <img src="https://fakeimg.pl/250x100/">
-    <p @click="next">Prénom</p>
+    <p>Branchez le support de la peluche</p>
+    <img @click="next" src="../../assets/support.png">
   </div>
 </template>
 
@@ -16,3 +15,13 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+  img{
+    width: 310px;
+    margin: 14vh 0;
+  }
+  p{
+    padding: 10vh 0;
+  }
+</style>

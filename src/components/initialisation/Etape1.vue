@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h1>Scannez le code au dos de la peluche</h1>
+    <p>Pour commencer, scannez <br> le code de la base</p>
     <img :class="{ imgValide: isValide }" src="https://img.icons8.com/color/300/000000/checkmark.png">
     <qrcode-stream :class="{ qrValide: isValide }" @decode="onDecode"></qrcode-stream>
   </div>
@@ -21,8 +21,10 @@ export default{
   methods: {
     onDecode (decodedString) {
       console.log(decodedString)
-      this.isValide = true
-      this.$emit('etape-valide')
+      if (decodedString === 'http://192.168.0.19:8080/initialisation?qr=ok') {
+        this.isValide = true
+        this.$emit('etape-valide')
+      }
     }
   }
 }
@@ -32,6 +34,9 @@ export default{
   .qrValide{
     position: relative;
     filter: blur(3px);
+  }
+  p{
+    padding: 10vh 0;
   }
   img{
     display: none;
